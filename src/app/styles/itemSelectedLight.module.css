@@ -1,0 +1,160 @@
+.mainContainer {
+  background-color: var(--color-light-background);
+  color: var(--text-light-mode);
+  min-height: 100vh;
+}
+
+.backButton {
+  margin: 3% 5%;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 6px 32px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--elements-light-mode);
+  color: var(--text-light-mode);
+  font-size: var(--font-size-homepage-items);
+}
+
+.infoContainer {
+  display: flex;
+  padding: 0% 5%;
+  font-size: var(--font-size-homepage-items);
+  align-items: center;
+  gap: 7vw;
+}
+
+.borderCountriesContainer {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  margin-top: 7vh;
+  align-items: center;
+  row-gap: 20px;
+}
+
+.moreInfo {
+  display: flex;
+  gap: 10vw;
+}
+
+.p {
+  margin-bottom: 3px;
+}
+
+.pBorder {
+  margin-bottom: 3px;
+}
+
+.title {
+  margin-bottom: 5vh;
+  font-weight: 800;
+}
+
+.countriesButtons {
+  margin: 0 10px;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 6px 32px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 85px;
+  justify-content: center;
+  background-color: var(--elements-light-mode);
+  font-size: var(--font-size-homepage-items);
+  color: var(--text-light-mode);
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+  display: contents;
+}
+
+@media screen and (max-width: 1300px) {
+  .borderCountriesContainer {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media screen and (max-width: 1165px) {
+  .borderCountriesContainer {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 1032px) {
+  .borderCountriesContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 907px) {
+  .infoContainer {
+    flex-direction: column;
+  }
+  .pBorder {
+    margin-top: 16vh;
+  }
+  .borderCountriesContainer {
+    margin-top: 3vh;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .infoImage {
+    width: 400px;
+    height: 330px;
+  }
+}
+
+@media screen and (max-width: 458px) {
+  .infoImage {
+    width: 300px;
+    height: 230px;
+  }
+  .moreInfo {
+    flex-direction: column;
+  }
+  .pBorder {
+    margin-top: 5vh;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .infoImage {
+    width: 220px;
+    height: 160px;
+  }
+  .backButton {
+    margin: 3% 13%;
+  }
+  .moreInfo,
+  .title,
+  .pBorder {
+    padding: 3% 10%;
+  }
+  .countriesButtons {
+    max-width: 50px;
+    margin: 0 5px;
+  }
+}
+
+@media screen and (max-width: 312px) {
+  .backButton {
+    margin: 3% 10%;
+  }
+}
+
+@media screen and (max-width: 288px) {
+  .backButton {
+    margin: 3% 8%;
+  }
+}
+
+@media screen and (max-width: 273px) {
+  .backButton {
+    margin: 3% 6%;
+  }
+}

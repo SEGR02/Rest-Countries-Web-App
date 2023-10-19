@@ -1,95 +1,87 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import styles1 from "./styles/home.module.css";
+import styles2 from "./styles/homeLight.module.css";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Navbar from "./components/Navbar";
+import Filters from "./components/Filters";
+import Card from "./components/Card";
+import Link from "next/link";
+import Country from "./interfaces/Country";
 
 export default function Home() {
+  const [data, setData] = useState<Country[]>();
+  const [filteredCountries, setFilteredCountries] = useState<Country[]>();
+  const [darkMode, setDarkMode] = useState<boolean>(true);
+  const [search, setSearch] = useState<string>("");
+  const [regionSelected, setRegionSelected] = useState<string>("");
+
+  useEffect(() => {
+    axios.get("https://restcountries.com/v3.1/all").then((res) => {
+      setData(res.data);
+      setFilteredCountries(res.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (regionSelected) {
+      const newData = data?.filter(
+        (countryInfo: Country) =>
+          countryInfo.name.common
+            .toLowerCase()
+            .includes(search.toLowerCase()) &&
+          countryInfo.region == regionSelected
+      );
+      setFilteredCountries(newData);
+    } else {
+      const newData = data?.filter((countryInfo: Country) =>
+        countryInfo.name.common.toLowerCase().includes(search.toLowerCase())
+      );
+      setFilteredCountries(newData);
+    }
+  }, [search]);
+
+  useEffect(() => {
+    if (regionSelected != "") {
+      const newData = data?.filter(
+        (countryInfo: Country) => countryInfo.region == regionSelected
+      );
+      setFilteredCountries(newData);
+    } else setFilteredCountries(data);
+  }, [regionSelected]);
+
+  const styles = darkMode ? styles1 : styles2;
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+    <div className={styles.mainContainer}>
+      <header>
+        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+      </header>
+      <section>
+        <Filters
+          darkMode={darkMode}
+          setSearch={setSearch}
+          setRegion={setRegionSelected}
         />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+      </section>
+      <main className={styles.cardsContainer}>
+        {filteredCountries?.map((countryInfo: Country, index: number) => (
+          <Link
+            key={index}
+            className={styles.link}
+            href={`${countryInfo?.altSpellings?.[0]}`}
+          >
+            <Card
+              country={countryInfo.name.common}
+              region={countryInfo.region}
+              population={countryInfo.population}
+              capital={countryInfo.capital?.[0]}
+              imageUrl={countryInfo.flags.svg}
+              darkMode={darkMode}
+            />
+          </Link>
+        ))}
+      </main>
+    </div>
+  );
 }

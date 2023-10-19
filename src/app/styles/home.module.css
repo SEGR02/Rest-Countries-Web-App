@@ -1,0 +1,213 @@
+.mainContainer {
+  background-color: var(--color-dark-background);
+  color: var(--text-dark-mode);
+  padding-bottom: 5%;
+  min-height: 100vh;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 10vh;
+  box-shadow: 0px 5px 5px -5px rgba(0, 0, 0, 0.2);
+  background-color: var(--elements-dark-mode);
+  padding: 0 5%;
+  padding-top: 1%;
+}
+
+.mainTitle {
+  font-size: var(--font-size-detail-page);
+  font-weight: 800;
+}
+
+.title {
+  font-size: var(--font-size-detail-page);
+  font-weight: 600;
+}
+
+.darkModeButton {
+  display: flex;
+  font-size: var(--font-size-homepage-items);
+  font-weight: 300;
+}
+
+.darkModeButton:hover {
+  cursor: pointer;
+}
+
+.moon {
+  margin-right: 0.5vw;
+  margin-top: 0.35vh;
+}
+
+.filtersContainer {
+  display: flex;
+  padding: 0 5%;
+  justify-content: space-between;
+  margin-top: 6vh;
+}
+
+.inputSearch,
+.inputSearch:focus {
+  background-color: var(--elements-dark-mode);
+  border: none;
+  color: var(--text-dark-mode);
+  padding: 10px 20px;
+  padding-left: 3.5vw;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: var(--font-size-homepage-items);
+}
+
+.inputSearch::placeholder {
+  color: var(--text-dark-mode);
+}
+
+.searchIcon {
+  position: absolute;
+  z-index: 999;
+  margin-left: 1vw;
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  width: 30%;
+}
+
+.inputRegion {
+  background-color: var(--elements-dark-mode);
+  border: none;
+  color: var(--text-dark-mode);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  font-size: var(--font-size-homepage-items);
+}
+
+.inputRegion:hover {
+  cursor: pointer;
+}
+
+.dropDownArrow {
+  color: #fff;
+  position: absolute;
+  margin-left: 9.5vw;
+}
+
+.dropDownArrow:hover {
+  cursor: pointer;
+}
+
+.regionContainer {
+  display: flex;
+  align-items: center;
+  width: 13%;
+}
+
+.cardContainer {
+  background-color: var(--elements-dark-mode);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 230px;
+  border-radius: 2%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cardContainer:hover {
+  cursor: pointer;
+}
+
+.cardP {
+  font-size: var(--font-size-homepage-items);
+  margin: 0;
+}
+
+.gray {
+  color: rgb(194, 206, 218);
+}
+
+.cardInfo {
+  padding: 7% 10% 10% 10%;
+}
+
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 0 5%;
+  gap: 2rem;
+  margin-top: 6vh;
+  justify-items: center;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.cardImage {
+  object-fit: cover;
+}
+
+@media screen and (max-width: 1100px) {
+  .cardsContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .cardsContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dropDownArrow {
+    margin-left: 8.5vw;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .cardsContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .filtersContainer {
+    flex-direction: column;
+    gap: 5vh;
+  }
+  .searchContainer {
+    width: 100%;
+  }
+  .inputSearch,
+  .inputSearch:focus {
+    padding-left: 7vw;
+  }
+  .searchIcon {
+    margin-left: 2vw;
+  }
+  .regionContainer {
+    width: 44%;
+  }
+  .dropDownArrow {
+    margin-left: 33vw;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .dropDownArrow {
+    margin-left: 32vw;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .dropDownArrow {
+    margin-left: 32vw;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .dropDownArrow {
+    margin-left: 30vw;
+  }
+  .inputSearch,
+  .inputSearch:focus {
+    padding-left: 12vw;
+  }
+}
